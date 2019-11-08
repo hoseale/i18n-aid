@@ -14,7 +14,7 @@ npm install i18n-aid -g
 
 ### 文件目录
 
- ![文件目录](https://github.com/HoseaLE/image/blob/master/i18n-aid-cate.jpg)
+![文件目录](https://github.com/HoseaLE/image/raw/master/i18n-aid-cate.jpg)
 
 ### 文件内容例子
 
