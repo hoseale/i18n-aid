@@ -37,7 +37,7 @@ pageOne.ts
 ```javascript
 
 export default {
-  pageOneModView: {
+  pageOneView: {
     hello: '你好'
   },
   pageOneMod: {
@@ -49,7 +49,7 @@ export default {
 
 导出文案文件en_US_export.tsv
 	
-	pageOne.pageOneModView.hello 你好
+	pageOne.pageOneView.hello 你好
 	pageOne.pageOneMod.success 成功
 
 ### 说明
