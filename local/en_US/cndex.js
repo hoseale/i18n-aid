@@ -1,8 +1,8 @@
 export default {
-  "aa": "哈哈",
+  "aa": "12",
   "bb": "23",
   "hah": {
-    "cc": "呵呵"
+    "cc": "231"
   },
   "tianj": "asdasd"
 }

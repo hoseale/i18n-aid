@@ -53,8 +53,13 @@ export default {
 	pageOne.pageOneMod.success 成功
 
 ### 说明
-*  翻译文件必需在根目录下的lang文件里
+*  翻译文件默认根目录为lang, 翻译文件类型默认为ts, 如果为其他目录或文件类型，请添加配置文件
 *  中文文件必需放在zh_CN文件里，文件名称不能错
-*  翻译文件类型只支持typescript
 *  导入的翻译文件类型为tsv
-*  必需先建好语言文件夹，例如en_US zh_CN
+
+### 可在根目录下添加配置文件 i18nAid.config.json 
+
+    {
+      "src": "./local",
+      "fileType": ".js"
+    }
