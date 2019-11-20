@@ -3,5 +3,6 @@ export default {
   bb:'23',
   hah:{
     cc:'231'
-  }
+  },
+  tianj: 'asdasd',
 }

@@ -1,7 +1,8 @@
-const { writeFileSync } = require('fs');
-const path = require('path');
-const _ = require('lodash');
-import { getAllMessages, getLangsDir, traverse } from './utils'
+import path from 'path'
+import _ from 'lodash'
+import { writeFileSync } from 'fs'
+import { getAllMessages, getLangsDir, traverse } from './utils';
+import config from '../config/config';
 
 /**
  * 同步键值，并且保留已经翻译的文案
@@ -36,7 +37,7 @@ function writeMessagesToFile(messages, file, lang) {
   traverse(srcMessages, (message, key) => {
     _.setWith(rst, key, _.get(messages, key), Object);
   });
-  writeFileSync(dstFile + '.ts', 'export default ' + JSON.stringify(rst, null, 2));
+  writeFileSync(dstFile + config.fileType, 'export default ' + JSON.stringify(rst, null, 2));
 }
 
 export default initMessages

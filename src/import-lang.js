@@ -1,9 +1,10 @@
 
-const { readFileSync, writeFileSync } = require('fs');
-const path = require('path');
-const { tsvParseRows, tsvParse } = require('d3-dsv');
-const _ = require('lodash');
+import path from 'path'
+import _ from 'lodash'
+import { readFileSync, writeFileSync } from 'fs';
+import { tsvParseRows } from 'd3-dsv';
 import { getAllMessages, getLangsDir, traverse } from './utils'
+import config from '../config/config';
 
 function getMessagesToImport(file) {
   const content = readFileSync(file).toString();
@@ -67,7 +68,7 @@ function writeMessagesToFile(messages, file, lang) {
   traverse(srcMessages, (message, key) => {
     _.setWith(rst, key, _.get(messages, key) || _.get(oldDstMessages, key), Object);
   });
-  writeFileSync(dstFile + '.ts', 'export default ' + JSON.stringify(rst, null, 2));
+  writeFileSync(dstFile + config.fileType, 'export default ' + JSON.stringify(rst, null, 2));
 }
 
 export default importMessages

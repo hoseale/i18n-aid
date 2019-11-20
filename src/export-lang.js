@@ -1,7 +1,7 @@
-const { writeFileSync } = require('fs');
-const path = require('path');
-const { tsvFormatRows } = require('d3-dsv');
+import { writeFileSync } from 'fs';
+import { tsvFormatRows } from 'd3-dsv';
 import { getAllMessages } from './utils'
+import config from '../config/config';
 
 function exportMessages(file, lang) {
   const allMessages = getAllMessages();

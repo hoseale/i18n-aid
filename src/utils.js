@@ -1,13 +1,17 @@
-const path = require('path');
-const _ = require('lodash');
-const { readdirSync } = require('fs');
+import config from '../config/config';
+import path from 'path';
+import _ from 'lodash';
+import fs from 'fs-extra';
+
+const { readdirSync, ensureDirSync } = fs;
 
 /**
  * 获取语言资源的根目录
  */
 function getLangsDir() {
-  return path.resolve('.', './lang');
+  return config.src
 }
+
 /**
  * 深度优先遍历对象中的所有 string 属性
  */
@@ -30,8 +34,9 @@ function traverse(obj, cb) {
  */
 function getAllMessages(lang = 'zh_CN', filter = () => true) {
   const srcLangDir = path.resolve(getLangsDir(), lang);
+  ensureDirSync(srcLangDir);
   let files = readdirSync(srcLangDir);
-  files = files.filter(file => file.endsWith('.ts') && file !== 'index.ts').map(file => path.resolve(srcLangDir, file));
+  files = files.filter(file => file.endsWith(config.fileType) && file !== `index${config.fileType}`).map(file => path.resolve(srcLangDir, file));
   const allMessages = files.map(file => {
     const { default: messages } = require(file);
     const fileNameWithoutExt = path.basename(file).split('.')[0];
