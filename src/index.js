@@ -1,13 +1,11 @@
 
 
-import init from './src/init-lang';
-import ep from './src/export-lang';
-import im from './src/import-lang';
+import init from './init-lang';
+import ep from './export-lang';
+import im from './import-lang';
 import program from 'commander';
+import pkg from '../package.json';
 
-// const program = require('commander');
-
-const pkg = require('./package.json');
 const path = require('path');
 
 require("@babel/register");
