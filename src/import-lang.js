@@ -3,7 +3,7 @@ import path from 'path'
 import _ from 'lodash'
 import { readFileSync, writeFileSync } from 'fs';
 import { tsvParseRows } from 'd3-dsv';
-import { getAllMessages, getLangsDir, traverse } from './utils'
+import { getAllMessages, getLangsDir, traverse, getFileContent } from './utils'
 import config from '../config/config';
 
 function getMessagesToImport(file) {
@@ -61,14 +61,17 @@ function importMessages(file, lang) {
 }
 
 function writeMessagesToFile(messages, file, lang) {
-  const srcMessages = require(path.resolve(getLangsDir(), 'zh_CN', file)).default;
+  const srcMessages = getFileContent(path.resolve(getLangsDir(), 'zh_CN', file));
   const dstFile = path.resolve(getLangsDir(), lang, file);
-  const oldDstMessages = require(dstFile).default;
+  const oldDstMessages = getFileContent(dstFile)
   const rst = {};
   traverse(srcMessages, (message, key) => {
+    // 写入导入的key值，以前的保持原有
     _.setWith(rst, key, _.get(messages, key) || _.get(oldDstMessages, key), Object);
   });
-  writeFileSync(dstFile + config.fileType, 'export default ' + JSON.stringify(rst, null, 2));
+
+  const content = '.json' === config.fileType ? JSON.stringify(rst, null, 2) : 'export default ' + JSON.stringify(rst, null, 2);
+  writeFileSync(dstFile + config.fileType, content);
 }
 
 export default importMessages

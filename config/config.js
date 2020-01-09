@@ -1,8 +1,10 @@
-import fs from 'fs-extra'
+import fs from 'fs-extra';
+const path = require('path');
+const cwd = process.cwd();
 const configJson = fs.readJsonSync('./i18nAid.config.json', { throws: false });
 
 export default {
-  src: './lang',
   fileType: '.ts', 
-  ...configJson
+  ...configJson,
+  src:  path.resolve(cwd, (configJson.src || './lang' )),
 }

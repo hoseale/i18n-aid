@@ -29,6 +29,11 @@ function traverse(obj, cb) {
   traverseInner(obj, cb, []);
 }
 
+// 根据文件类型获取文件内容
+function getFileContent(path) {
+  return '.json' === config.fileType ? require(path) : require(path).default;
+}
+
 /**
  * 获取所有文案
  */
@@ -38,10 +43,10 @@ function getAllMessages(lang = 'zh_CN', filter = () => true) {
   let files = readdirSync(srcLangDir);
   files = files.filter(file => file.endsWith(config.fileType) && file !== `index${config.fileType}`).map(file => path.resolve(srcLangDir, file));
   const allMessages = files.map(file => {
-    const { default: messages } = require(file);
+    let messages = getFileContent(file);
     const fileNameWithoutExt = path.basename(file).split('.')[0];
     const flattenedMessages = {};
-
+    
     traverse(messages, (message, path) => {
       const key = fileNameWithoutExt + '.' + path;
       if (filter(message, key)) {
@@ -58,5 +63,6 @@ function getAllMessages(lang = 'zh_CN', filter = () => true) {
 export {
   getLangsDir,
   traverse,
-  getAllMessages
+  getAllMessages,
+  getFileContent
 }

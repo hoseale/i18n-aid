@@ -1,5 +1,5 @@
 export default {
-  "aa": "12",
+  "aa": "水电费",
   "bb": "23",
   "hah": {
     "cc": "231"
