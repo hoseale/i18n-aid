@@ -1,4 +1,6 @@
 import fs from 'fs-extra';
+import _ from 'lodash';
+
 const path = require('path');
 const cwd = process.cwd();
 const configJson = fs.readJsonSync(path.resolve(cwd, './i18nAid.config.json'), { throws: false });
@@ -6,5 +8,5 @@ const configJson = fs.readJsonSync(path.resolve(cwd, './i18nAid.config.json'), {
 export default {
   fileType: '.ts', 
   ...configJson,
-  src:  path.resolve(cwd, (configJson.src || './lang' )),
+  src:  path.resolve(cwd, (_.get(configJson, 'src') || './lang')),
 }
