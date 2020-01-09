@@ -53,7 +53,7 @@ export default {
 	pageOne.pageOneMod.success 成功
 
 ### 说明
-*  翻译文件默认根目录为lang, 翻译文件类型默认为ts, 如果为其他目录或文件类型，请添加配置文件
+*  翻译文件默认根目录为lang, 翻译文件类型默认为ts; 另外支出js、json类型，需要添加配置文件
 *  中文文件必需放在zh_CN文件里，文件名称不能错
 *  导入的翻译文件类型为tsv
 
